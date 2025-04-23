@@ -9,6 +9,7 @@ export class FakeAdherentRepository implements AdherentRepository {
       id: this.adherentData.length + 1,
       ...adherent
     };
+    console.log('newEntry', newEntry)
 
     this.adherentData.push(newEntry);
 

@@ -39,18 +39,15 @@ export function useCreateAdherentUseCase() {
     }
 
     try {
-      store.start()
       bus.emitCreationStarted()
 
       // Appel au repository avec gestion du retour
       await adherentRepository.create(command)
 
-      store.success()
       bus.emitCreated()
     } catch (error) {
       // Gestion d'erreur améliorée
       const message = error instanceof Error ? error.message : 'Erreur inconnue'
-      store.fail(message)
       bus.emitCreationFailed(message)
     }
   }
