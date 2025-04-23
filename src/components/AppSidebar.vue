@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-vue-next"
+import { ChartLine, UserPlus, Settings, Users } from 'lucide-vue-next'
 import {
   Sidebar,
   SidebarContent,
@@ -9,36 +9,31 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar'
 
 // Menu items.
 const items = [
   {
-    title: "Home",
-    url: "#",
-    icon: Home,
+    title: 'Dashboard',
+    url: '#',
+    icon: ChartLine,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: 'Add adherent',
+    url: '#',
+    icon: UserPlus,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: 'Users',
+    url: '#',
+    icon: Users,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
+    title: 'Settings',
+    url: '#',
     icon: Settings,
   },
-];
+]
 </script>
 
 <template>
@@ -52,7 +47,7 @@ const items = [
               <SidebarMenuButton asChild>
                 <a :href="item.url">
                   <component :is="item.icon" />
-                  <span>{{item.title}}</span>
+                  <span>{{ item.title }}</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
