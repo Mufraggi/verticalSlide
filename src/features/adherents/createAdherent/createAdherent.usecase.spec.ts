@@ -1,13 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { validateAdherentService } from '@/features/adherents/createAdherent/create-adherent-validator.service.ts'
 import {
   type CreateAdherentCommand,
   useCreateAdherentUseCase,
 } from '@/features/adherents/createAdherent/createAdherent.usecase.ts'
 
 const mockAdherentRepository = {
-  create: vi.fn(), // Mock de la fonction 'create'
+  create: vi.fn(), // Mock of the 'create' function
 }
 vi.mock('@/app/useAppContainer.ts', () => ({
   useAppContainer: vi.fn(() => ({
@@ -15,7 +14,6 @@ vi.mock('@/app/useAppContainer.ts', () => ({
   })),
 }))
 
-// 2. Mock du bus d'événements via useAdherentEvents
 const mockBus = {
   emitCreationStarted: vi.fn(),
   emitCreated: vi.fn(),
@@ -26,12 +24,10 @@ vi.mock('@/features/adherents/createAdherent/adherentCreated.event.ts', () => ({
 }))
 
 describe('useCreateAdherentUseCase', () => {
-  // Réinitialise les mocks avant chaque test pour éviter les interférences
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  // Fonction utilitaire pour créer une commande valide de base
   const createValidCommand = (): CreateAdherentCommand => ({
     lastName: 'Doe',
     firstName: 'John',
@@ -40,7 +36,7 @@ describe('useCreateAdherentUseCase', () => {
     phone: '123456789',
   })
 
-  it('devrait appeler le repository et émettre les événements de succès si la commande est valide', async () => {
+  it('should call the repository and emit success events if the command is valid', async () => {
     const command = createValidCommand()
     const { execute } = useCreateAdherentUseCase()
 
@@ -55,9 +51,9 @@ describe('useCreateAdherentUseCase', () => {
     expect(mockBus.emitCreationFailed).not.toHaveBeenCalled()
   })
 
-  it("devrait émettre un événement d'échec et ne pas appeler le repository si la validation échoue", async () => {
+  it('should emit a failure event and not call the repository if validation fails', async () => {
     const command = createValidCommand()
-    const repositoryError = new Error('Erreur de base de données')
+    const repositoryError = new Error('Database error')
 
     const { execute } = useCreateAdherentUseCase()
     mockAdherentRepository.create.mockRejectedValue(repositoryError)
@@ -70,9 +66,9 @@ describe('useCreateAdherentUseCase', () => {
     expect(mockBus.emitCreated).not.toHaveBeenCalled()
   })
 
-  it("devrait émettre un événement d'échec si l'appel au repository échoue", async () => {
+  it('should emit a failure event if the repository call fails', async () => {
     const command = createValidCommand()
-    const repositoryError = new Error('Erreur de base de données')
+    const repositoryError = new Error('Database error')
     const { execute } = useCreateAdherentUseCase()
     mockAdherentRepository.create.mockRejectedValue(repositoryError)
 
@@ -86,9 +82,9 @@ describe('useCreateAdherentUseCase', () => {
     expect(mockBus.emitCreated).not.toHaveBeenCalled()
   })
 
-  it("devrait émettre un événement d'échec avec un message générique si l'erreur du repository n'est pas une instance d'Error", async () => {
+  it('should emit a failure event with a generic message if the repository error is not an instance of Error', async () => {
     const command = createValidCommand()
-    const repositoryError = "une chaîne d'erreur"
+    const repositoryError = "an error string"
     const { execute } = useCreateAdherentUseCase()
     mockAdherentRepository.create.mockRejectedValue(repositoryError)
 
