@@ -1,16 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CreateAdherentView from '@/features/adherents/createAdherent/ui/CreateAdherentView.vue'
+import { createAdherentRoute } from '@/features/adherents/createAdherent/route.ts'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: CreateAdherentView,
-    },
-  ],
+  routes: [createAdherentRoute],
 })
-
 
 export default router

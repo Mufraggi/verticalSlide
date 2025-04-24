@@ -1,11 +1,11 @@
 // (Optional: Create a file like src/features/adherents/createAdherent/adherent.schema.ts)
 import { z } from 'zod'
 
-const practiceSchema = z.object({
-  name: z.string().min(1, 'Practice name is required'),
-  frequency: z.string().min(1, 'Frequency is required'),
-  level: z.enum(['Beginner', 'Intermediate', 'Advanced'], { required_error: 'Level is required' })
-})
+//const practiceSchema = z.object({
+//  name: z.string().min(1, 'Practice name is required'),
+//  frequency: z.string().min(1, 'Frequency is required'),
+//  level: z.enum(['Beginner', 'Intermediate', 'Advanced'], { required_error: 'Level is required' })
+//})
 
 export const adherentSchema = z.object({
   lastName: z.string().min(1, 'Le nom de famille est requis'),
