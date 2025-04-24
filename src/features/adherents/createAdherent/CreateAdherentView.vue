@@ -3,7 +3,7 @@
     <AdherentForm @submit="onSubmitForm" />
 
     <div v-if="status === 'success'">✔️ Créé !</div>
-    <div v-if="status ==='error'">❌ {{ store.error }}</div>
+    <div v-if="status === 'error'">❌ {{ store.error }}</div>
   </div>
 </template>
 
@@ -23,12 +23,12 @@ const { execute } = useCreateAdherentUseCase()
 const router = useRouter()
 const store = useCreateAdherentStore()
 
-
-const status = ref<'success'| 'error'| 'pending' | null>(null)
+const status = ref<'success' | 'error' | 'pending' | null>(null)
 const error = ref<string | null>(null)
 onCreated((adherent) => {
   console.log('Adherent created:', adherent)
   status.value = 'success'
+  router.push('/about')
 })
 onCreationStarted((adherent) => {
   console.log('Adherent created:', adherent)
@@ -45,7 +45,6 @@ const onSubmitForm: (formData: CreateAdherentCommand) => Promise<void> = async (
 ) => {
   try {
     await execute(formData)
-   // await router.push('/about')
   } catch (error) {
     console.error("Erreur lors de la création de l'adhérent:", error)
   }

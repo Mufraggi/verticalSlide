@@ -1,5 +1,4 @@
 import { useAdherentEvents } from '@/features/adherents/createAdherent/adherentCreated.event.ts'
-import { useCreateAdherentStore } from '@/features/adherents/createAdherent/createAdherent.store.ts'
 import { useAppContainer } from '@/app/useAppContainer.ts'
 import { validateAdherentService } from '@/features/adherents/createAdherent/create-adherent-validator.service.ts'
 
@@ -26,7 +25,6 @@ export type CreateAdherentCommand = {
 export function useCreateAdherentUseCase() {
   const { adherentRepository } = useAppContainer()
   const bus = useAdherentEvents()
-  const store = useCreateAdherentStore()
 
   async function execute(command: CreateAdherentCommand) {
     // Validation des données
