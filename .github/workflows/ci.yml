@@ -28,23 +28,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22 # Ou la version LTS que vous préférez/utilisez
-          cache: 'npm' # Active la mise en cache pour npm
+          cache: 'pnpm' # Active la mise en cache pour npm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Check Formatting
         run: npx prettier --check src/
 
       - name: Run Linters
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Type Check
-        run: npm run type-check
+        run: pnpm run type-check
 
 
       - name: Run Unit Tests
-        run: npm run test:unit
+        run: pnpm run test:unit
 
       - name: Build Application
-        run: npm run build
+        run: pnpm run build
