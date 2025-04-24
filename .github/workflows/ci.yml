@@ -30,6 +30,8 @@ jobs:
           node-version: 22 # Ou la version LTS que vous préférez/utilisez
           cache: 'pnpm' # Active la mise en cache pour npm
 
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install dependencies
         run: pnpm ci
 
