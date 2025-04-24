@@ -2,51 +2,53 @@ import type { CreateAdherentCommand } from '@/features/adherents/createAdherent/
 import type { AdherentRepository } from '@/features/adherents/infrastructure/IAdherent.repository.ts'
 
 export class FakeAdherentRepository implements AdherentRepository {
-  private adherentData: (CreateAdherentCommand & { id: number })[] = [];
+  private adherentData: (CreateAdherentCommand & { id: number })[] = []
 
   async create(adherent: CreateAdherentCommand): Promise<{ lastName: string; id: number }> {
     const newEntry = {
       id: this.adherentData.length + 1,
-      ...adherent
-    };
+      ...adherent,
+    }
     console.log('newEntry', newEntry)
 
-    this.adherentData.push(newEntry);
+    this.adherentData.push(newEntry)
 
-    // Retourne explicitement les champs demandés
     return {
       lastName: newEntry.lastName,
-      id: newEntry.id
-    };
+      id: newEntry.id,
+    }
   }
 
   async findAll(): Promise<Array<CreateAdherentCommand & { id: number }>> {
-    return [...this.adherentData];
+    return [...this.adherentData]
   }
 
   async findById(id: number): Promise<(CreateAdherentCommand & { id: number }) | null> {
-    return this.adherentData.find((adherent) => adherent.id === id) || null;
+    return this.adherentData.find((adherent) => adherent.id === id) || null
   }
 
-  async update(id: number, updatedData: CreateAdherentCommand): Promise<CreateAdherentCommand | null> {
-    const index = this.adherentData.findIndex((adherent) => adherent.id === id);
+  async update(
+    id: number,
+    updatedData: CreateAdherentCommand,
+  ): Promise<CreateAdherentCommand | null> {
+    const index = this.adherentData.findIndex((adherent) => adherent.id === id)
 
-    if (index === -1) return null;
+    if (index === -1) return null
 
     this.adherentData[index] = {
       ...this.adherentData[index],
-      ...updatedData
-    };
+      ...updatedData,
+    }
 
-    return this.adherentData[index];
+    return this.adherentData[index]
   }
 
   async delete(id: number): Promise<number | null> {
-    const index = this.adherentData.findIndex((adherent) => adherent.id === id);
+    const index = this.adherentData.findIndex((adherent) => adherent.id === id)
 
-    if (index === -1) return null;
+    if (index === -1) return null
 
-    this.adherentData.splice(index, 1);
-    return id;
+    this.adherentData.splice(index, 1)
+    return id
   }
 }

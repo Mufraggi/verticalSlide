@@ -17,20 +17,20 @@
             </FormItem>
           </FormField>
 
-          <!--<FormField name="firstName">
+          <FormField v-slot="{ componentField }" name="firstName">
             <FormItem>
               <FormLabel>First Name *</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="John" v-model="form.firstName" />
+                <Input type="text" placeholder="John" v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
           </FormField>
 
-          <FormField name="gender">
+          <FormField v-slot="{ componentField }" name="gender">
             <FormItem>
               <FormLabel>Gender *</FormLabel>
-              <Select v-model="form.gender">
+              <Select v-bind="componentField">
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select gender" />
@@ -46,26 +46,26 @@
             </FormItem>
           </FormField>
 
-          <FormField name="email">
+          <FormField v-slot="{ componentField }" name="email">
             <FormItem>
               <FormLabel>Email *</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="john.doe@example.com" v-model="form.email" />
+                <Input type="email" placeholder="john.doe@example.com" v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
           </FormField>
 
-          <FormField name="phone">
+          <FormField v-slot="{ componentField }" name="phone">
             <FormItem>
               <FormLabel>Phone</FormLabel>
               <FormControl>
-                <Input type="tel" placeholder="+33 6 12 34 56 78" v-model="form.phone" />
+                <Input type="tel" placeholder="+33 6 12 34 56 78" v-bind="componentField" />
               </FormControl>
               <FormDescription>Optional</FormDescription>
               <FormMessage />
             </FormItem>
-          </FormField>-->
+          </FormField>
         </div>
 
         <!--<FormField name="address">
@@ -141,16 +141,12 @@ import {
 
 import type { CreateAdherentCommand } from '@/features/adherents/createAdherent/createAdherent.usecase.ts'
 import { adherentSchema } from '@/features/adherents/createAdherent/adherent.domain.ts'
-import { Textarea } from '@/components/ui/textarea'
 
 const emit = defineEmits<{
   (e: 'submit', values: CreateAdherentCommand): void
 }>()
 
-// Créer un état réactif pour le formulaire
 
-
-// Configurer vee-validate
 const { handleSubmit } = useForm({
   validationSchema: toTypedSchema(adherentSchema),
 })
