@@ -38,7 +38,7 @@ jobs:
         run: npx prettier --check src/
 
       - name: Run Linters
-        run: pnpm run lint
+        run: pnpm run lint:oxlint
 
       - name: Type Check
         run: pnpm run type-check
