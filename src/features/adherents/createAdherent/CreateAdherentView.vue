@@ -17,6 +17,7 @@ import AdherentForm from '@/features/adherents/createAdherent/components/Adheren
 import { useRouter } from 'vue-router'
 import { useAdherentEvents } from '@/features/adherents/createAdherent/adherentCreated.event.ts'
 import { ref } from 'vue'
+import { toast } from 'vue-sonner'
 
 const { onCreated, onCreationStarted, onCreationFailed } = useAdherentEvents()
 const { execute } = useCreateAdherentUseCase()
@@ -29,6 +30,7 @@ onCreated((adherent) => {
   console.log('Adherent created:', adherent)
   status.value = 'success'
   router.push('/about')
+  toast.success('Adherent create')
 })
 onCreationStarted((adherent) => {
   console.log('Adherent created:', adherent)
