@@ -10,7 +10,7 @@ export enum CreateAdherentStatus {
 export const useCreateAdherentStore = defineStore('createAdherent', {
   state: () => ({
     status: CreateAdherentStatus.IDLE,
-    error: null as string | null
+    error: null as string | null,
   }),
 
   actions: {
@@ -24,6 +24,6 @@ export const useCreateAdherentStore = defineStore('createAdherent', {
     fail(error: string) {
       this.status = CreateAdherentStatus.ERROR
       this.error = error
-    }
-  }
+    },
+  },
 })

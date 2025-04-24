@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import AppSidebar from '@/components/AppSidebar.vue'
 import { provideAppContainer } from '@/app/useAppContainer.ts'
 import { FakeAdherentRepository } from '@/features/adherents/infrastructure/Adherent.repository.ts'
+import { Toaster } from '@/components/ui/sonner'
 
 provideAppContainer({ adherentRepository: new FakeAdherentRepository() })
 </script>
@@ -15,6 +16,7 @@ provideAppContainer({ adherentRepository: new FakeAdherentRepository() })
     <main>
       <SidebarTrigger />
       <RouterView />
+      <Toaster richColors position="top-right" />
     </main>
   </SidebarProvider>
 </template>

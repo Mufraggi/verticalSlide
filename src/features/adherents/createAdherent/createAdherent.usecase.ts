@@ -12,11 +12,11 @@ export type Practice = {
 // Define a type to represent a gym member
 export type CreateAdherentCommand = {
   lastName: string
-  //firstName: string
+  firstName: string
   //BDD: Date
-  //gender: 'Male' | 'Female' | 'Other'
-  //email: string
- // phone: string | null
+  gender: 'Male' | 'Female' | 'Other'
+  email: string
+  phone: string | null
   //<practices: Practice[] // List of sport practices for the member
   //registrationDate: Date // Registration date, e.g., "2023-10-01"
   //comments: string | null // Field for additional comments or notes
@@ -30,9 +30,7 @@ export function useCreateAdherentUseCase() {
     // Validation des données
     const errors = validateAdherentService(command)
     if (errors.length > 0) {
-      errors.forEach(error =>
-        bus.emitCreationFailed(`Échec de la création : ${error}`)
-      )
+      errors.forEach((error) => bus.emitCreationFailed(`Échec de la création : ${error}`))
       return
     }
 
