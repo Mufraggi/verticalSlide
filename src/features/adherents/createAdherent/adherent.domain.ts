@@ -12,7 +12,7 @@ export const adherentSchema = z.object({
   firstName: z.string().min(1, 'Le prénom de famille est requis'),
   //bod: z.date({ required_error: 'Birth date is required' }),
   gender: z.enum(['Male', 'Female', 'Other'], { required_error: 'Gender is required' }),
-  email: z.string().min(1, 'Email is required').email('Invalid email format')
+  email: z.string().min(1, 'Email is required').email('Invalid email format'),
   //address: z.string().nullable().optional(),
   ////practices: z.array(practiceSchema).min(0), // Allow zero practices initially
   //registrationDate: z.date({ required_error: 'Registration date is required' }),
@@ -20,7 +20,7 @@ export const adherentSchema = z.object({
 })
 
 // Define the TypeScript type based on the Zod schema if needed elsewhere
-export type CreateAdherentFormData = z.infer<typeof adherentSchema>;
+export type CreateAdherentFormData = z.infer<typeof adherentSchema>
 
 // Ensure this aligns with your original CreateAdherentCommand if necessary,
 // especially regarding nullability and optional fields.

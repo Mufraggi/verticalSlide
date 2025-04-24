@@ -105,7 +105,6 @@
 </template>
 
 <script setup lang="ts">
-
 import { reactive } from 'vue'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -146,15 +145,16 @@ const emit = defineEmits<{
   (e: 'submit', values: CreateAdherentCommand): void
 }>()
 
-
 const { handleSubmit } = useForm({
   validationSchema: toTypedSchema(adherentSchema),
 })
-const onSubmitForm = handleSubmit((values) => {
-  console.log('Form is valid, submitting:', values);
-  emit('submit', values as CreateAdherentCommand);
-}, (errors) => {
-  console.log('Validation errors:', errors);
-});
-
+const onSubmitForm = handleSubmit(
+  (values) => {
+    console.log('Form is valid, submitting:', values)
+    emit('submit', values as CreateAdherentCommand)
+  },
+  (errors) => {
+    console.log('Validation errors:', errors)
+  },
+)
 </script>

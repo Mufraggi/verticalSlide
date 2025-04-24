@@ -84,7 +84,7 @@ describe('useCreateAdherentUseCase', () => {
 
   it('should emit a failure event with a generic message if the repository error is not an instance of Error', async () => {
     const command = createValidCommand()
-    const repositoryError = "an error string"
+    const repositoryError = 'an error string'
     const { execute } = useCreateAdherentUseCase()
     mockAdherentRepository.create.mockRejectedValue(repositoryError)
 

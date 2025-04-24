@@ -6,7 +6,6 @@ export interface AppContainer {
 }
 export const appContainerKey = Symbol('appContainerKey') // <-- C'est un NOUVEAU Symbol, différent du premier
 
-
 export function provideAppContainer(container: AppContainer) {
   provide(appContainerKey, container)
 }
