@@ -11,7 +11,7 @@ provideAppContainer({ adherentRepository: new FakeAdherentRepository() })
 </script>
 
 <template>
-  <SidebarProvider>
+  <SidebarProvider >
     <AppSidebar />
     <main>
       <SidebarTrigger />
