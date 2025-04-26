@@ -6,6 +6,7 @@ import { useListAdherentUseCase } from '@/features/adherents/listAdherent/listAd
 import { useAdherentListEvents } from '@/features/adherents/listAdherent/adherentList.event'
 import { useAdherentsStore } from '@/features/adherents/listAdherent/listAdherent.store.ts'
 import { Skeleton } from '@/components/ui/skeleton'
+import { toast } from 'vue-sonner'
 
 // Utilisez le store Pinia pour récupérer les données et l'état
 const adherentsStore = useAdherentsStore()
@@ -22,6 +23,7 @@ events.onRetrieved((adherents) => {
 })
 
 events.onListFailed((error) => {
+  toast.error('Error during the adherent creation')
   adherentsStore.setError(error)
 })
 
@@ -41,18 +43,6 @@ onMounted(async () => {
       </div>
     </div>
 
-    <div v-if="adherentsStore.isLoading">Chargement en cours...</div>
-    <div v-else-if="adherentsStore.hasError" class="error-message">
-      Erreur: {{ adherentsStore.error }}
-    </div>
     <DataTable v-else :columns="columns" :data="adherentsStore.adherents" />
   </div>
 </template>
-
-<style scoped>
-.error-message {
-  color: red;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-</style>
