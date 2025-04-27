@@ -9,7 +9,6 @@ export class FakeAdherentRepository implements AdherentRepository {
       id: this.adherentData.length + 1,
       ...adherent,
     }
-    console.log('newEntry', newEntry)
 
     this.adherentData.push(newEntry)
 
@@ -20,6 +19,8 @@ export class FakeAdherentRepository implements AdherentRepository {
   }
 
   async findAll(): Promise<Array<CreateAdherentCommand & { id: number }>> {
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+    await sleep(2000)
     return [...this.adherentData]
   }
 

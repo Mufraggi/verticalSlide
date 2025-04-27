@@ -23,23 +23,18 @@ import {
 const items = [
   {
     title: 'Dashboard',
-    url: '#',
+    name: 'dashboard',
     icon: ChartLine,
   },
   {
-    title: 'Add adherent',
-    url: '#',
-    icon: UserPlus,
-  },
-  {
-    title: 'Users',
-    url: '#',
+    title: 'Adherents',
+    name: 'adherents',
     icon: Users,
   },
   {
-    title: 'Settings',
-    url: '#',
-    icon: Settings,
+    title: 'Add adherent',
+    name: 'adherents.create',
+    icon: UserPlus,
   },
 ]
 </script>
@@ -53,10 +48,10 @@ const items = [
           <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
               <SidebarMenuButton asChild>
-                <a :href="item.url">
+                <router-link :to="{ name: item.name }">
                   <component :is="item.icon" />
                   <span>{{ item.title }}</span>
-                </a>
+                </router-link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
